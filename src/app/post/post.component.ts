@@ -11,15 +11,16 @@ import { Post } from './post';
 })
 export class PostComponent implements OnInit {
 
-    private post: Post;
+    private posts: Array<Post>;
 
-    constructor(private postService: PostService) {
-        postService.get('test').subscribe(data => {
-            this.post = data;
-        });
-    }
+    constructor(
+        private postService: PostService
+    ) {}
 
     ngOnInit() {
+        this.postService.list().subscribe(data => {
+            this.posts = data;
+        });
     }
 
 }

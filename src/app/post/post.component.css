@@ -1,6 +1,6 @@
 .left {
     float:left;
-    border-right:1px solid black;
+    border-right:1px solid silver;
     width:20%;
     height:100%;
     resize: horizontal;
@@ -9,8 +9,34 @@
 .left::-webkit-scrollbar { 
     display: none; 
 }
-.left .list {
-    margin: 0.5em;
+.left .list ul {
+    list-style:none;
+    margin: 0px;
+    padding: 0px;
+}
+.left .list li {
+    padding: 0.5em;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.left .list li:hover {
+    cursor: pointer;
+    background-color: rgb(222, 222, 222);
+}
+.left .list li.active {
+    background-color: rgb(222, 222, 222);
+}
+.left .list li.new {
+    background-color: maroon;
+}
+.left .list li.new {
+    color: thistle;
+}
+.left .list li.new:hover {
+    background-color: sienna;
+    color: white;
 }
 .right {
     float:none;

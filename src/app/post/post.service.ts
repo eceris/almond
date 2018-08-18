@@ -9,7 +9,11 @@ export class PostService {
     constructor(private http: HttpClient) { }
 
     get(id: string) {
-        return this.http.get<Post>('/api/post/' + id);
+        return this.http.get<Post>('/api/posts/' + id);
+    }
+
+    list() {
+        return this.http.get<Array<Post>>('/api/posts');
     }
 
 }
