@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { MarkdownModule } from 'ngx-markdown';
+
 import { PostService } from './post.service';
+import { Post } from './post';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+    selector: 'app-post',
+    templateUrl: './post.component.html',
+    styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
 
-  // TODO Post 객체 생성
-  content: any;
+    private post: Post;
 
-  constructor(private postService: PostService) {
-    postService.get('test').subscribe(data => {
-      this.content = data.content;
-    });
-  }
+    constructor(private postService: PostService) {
+        postService.get('test').subscribe(data => {
+            this.post = data;
+        });
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

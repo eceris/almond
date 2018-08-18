@@ -1,6 +1,7 @@
 ## Front ###
 node_modules/
 dist/
+.vscode/
 
 ### IntelliJ IDEA ###
 .idea

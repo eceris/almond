@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, isDevMode } from '@angular/core';
 // TODO Http Interceptor
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +19,8 @@ import { PostServiceMock } from './post/post.service.mock';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MarkdownModule.forRoot()
   ],
   providers: [
     {

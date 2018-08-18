@@ -10,7 +10,7 @@
     display: none; 
 }
 .left .list {
-    margin: 0px;
+    margin: 0.5em;
 }
 .right {
     float:none;
@@ -22,5 +22,5 @@
     display: none; 
 }
 .right .post {
-    margin: 0px;
+    margin: 0.5em 0.5em 1em 0.5em;
 }
