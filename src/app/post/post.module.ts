@@ -1,5 +1,9 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgModule, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { PostRoutingModule } from './post-routing.module';
@@ -16,6 +20,9 @@ import { PostServiceMock } from './post.service.mock';
         PostWriteComponent
     ],
     imports: [
+        BrowserModule,
+        CommonModule,
+        FormsModule,
         PostRoutingModule,
         MarkdownModule.forRoot()
     ],
@@ -29,4 +36,12 @@ import { PostServiceMock } from './post.service.mock';
         }
     ]
 })
-export class PostModule { }
+export class PostModule {
+    
+    private postEventSource = new Subject<string>();
+    postEventObservable = this.postEventSource.asObservable();
+
+    announce(event: string) {
+        this.postEventSource.next(event);
+    }
+}

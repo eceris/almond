@@ -16,7 +16,6 @@
 }
 .left .list li {
     padding: 0.5em;
-    vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -47,6 +46,20 @@
 .right::-webkit-scrollbar { 
     display: none; 
 }
-.right .post {
-    margin: 0.5em 0.5em 1em 0.5em;
+.right .toolbox div.button {
+    float: left;
+    margin: 0.2em;
+    padding: 0.3em;
+    border-radius: 0.5em;
+    color: gray;
+    border:1px solid rgb(222, 222, 222);
+}
+.right .toolbox div.button:hover {
+    cursor: pointer;
+    background-color: rgb(222, 222, 222);
+}
+.right .content {
+    width: 100%;
+    height: 100%;
+    clear: both;
 }

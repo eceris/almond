@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription }   from 'rxjs';
 
 import { PostService } from './post.service';
 import { Post } from './post';
@@ -8,15 +10,33 @@ import { Post } from './post';
     templateUrl: './post.write.component.html',
     styleUrls: ['./post.write.component.css']
 })
-export class PostWriteComponent implements OnInit {
+export class PostWriteComponent implements OnInit, OnDestroy {
 
     private post: Post;
+    private subscription: Subscription;
 
     constructor(
-        private postService: PostService
-    ) {}
+        private postService: PostService,
+        private activeRoute: ActivatedRoute
+    ) {
+        this.subscription = this.postService.postEventObservable.subscribe(astronaut => {
+            if(astronaut['key'] === 'save') {
+                this.postService.save(this.post).subscribe(data => {
+                    astronaut['value'].apply();
+                });
+            }
+        });
+    }
 
     ngOnInit() {
+        let id = this.activeRoute.snapshot.paramMap.get('id');
+        this.postService.get(id).subscribe(data => {
+            this.post = data;
+        });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
 }

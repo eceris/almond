@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { MarkdownModule } from 'ngx-markdown';
+import { Subscription }   from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { PostService } from './post.service';
 import { Post } from './post';
@@ -11,14 +11,23 @@ import { Post } from './post';
     templateUrl: './post.view.component.html',
     styleUrls: ['./post.view.component.css']
 })
-export class PostViewComponent implements OnInit {
+export class PostViewComponent implements OnInit, OnDestroy {
 
     private post: Post;
+    private subscription: Subscription;
 
     constructor(
         private postService: PostService,
         private route: ActivatedRoute
-    ) {}
+    ) {
+        this.subscription = this.postService.postEventObservable.subscribe(astronaut => {
+            if(astronaut['key'] === 'delete') {
+                this.postService.delete(this.post).subscribe(data => {
+                    astronaut['value'].apply();
+                });
+            }
+        });
+    }
 
     ngOnInit() {
         this.route.paramMap.pipe(
@@ -28,6 +37,10 @@ export class PostViewComponent implements OnInit {
         ).subscribe(data => {
             this.post = data;
         });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
 }

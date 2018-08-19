@@ -9,9 +9,9 @@ const postRoutes: Routes = [
     {
         path: '', component: PostComponent,
         children: [
-            { path: '', redirectTo: '1', pathMatch: 'full' },
-            { path: 'write', component: PostWriteComponent },
-            { path: ':id', component: PostViewComponent }
+            { path: ':id/view', component: PostViewComponent },
+            { path: ':id/write', component: PostWriteComponent },
+            { path: ':id/save', component: PostWriteComponent }
         ]
     }
 ];

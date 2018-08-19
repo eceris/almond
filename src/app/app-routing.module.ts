@@ -5,6 +5,7 @@ import { PostComponent } from './post/post.component';
 
 const routes: Routes = [
     { path: '', component: PostComponent, pathMatch: 'full' }
+    // TODO Exception Handler
 ];
 
 @NgModule({
