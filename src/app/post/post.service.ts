@@ -24,8 +24,9 @@ export class PostService {
         return this.http.post<Post>('/api/posts', {});
     }
 
-    save(post: Post) {
-        return this.http.put<Post>('/api/posts', { post: post });
+    save(updatePost: Post) {
+        console.log(updatePost)
+        return this.http.put<Post>('/api/posts', { post: updatePost });
     }
 
     delete(post: Post) {
