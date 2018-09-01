@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PostService } from './post.service';
@@ -14,7 +14,7 @@ export class PostComponent implements OnInit {
     posts: Array<Post>;
 
     constructor(
-        private postService: PostService,
+        @Inject(PostService) private postService: PostService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
