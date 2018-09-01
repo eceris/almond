@@ -7,14 +7,15 @@ import { Post } from './post';
 @Component({
     selector: 'app-post',
     templateUrl: './post.component.html',
-    styleUrls: ['./post.component.css']
+    styleUrls: ['./post.component.css'],
+    providers: [ PostService ]
 })
 export class PostComponent implements OnInit {
 
     posts: Array<Post>;
 
     constructor(
-        @Inject(PostService) private postService: PostService,
+        private postService: PostService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
