@@ -27,12 +27,9 @@ import { PostServiceMock } from './post.service.mock';
         MarkdownModule.forRoot()
     ],
     providers: [
-        PostService,
         {
             provide: PostService,
-            useFactory(http: HttpClient) {
-                return isDevMode() ? new PostServiceMock() : new PostService(http);
-            },
+            useFactory: http => isDevMode() ? new PostServiceMock() : new PostService(http),
             deps: [HttpClient]
         }
     ]
