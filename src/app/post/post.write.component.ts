@@ -28,6 +28,10 @@ export class PostWriteComponent implements OnInit, OnDestroy {
         });
     }
 
+    writing(writingContent) {
+        this.post.content = writingContent;
+    }
+
     ngOnInit() {
         let id = this.activeRoute.snapshot.paramMap.get('id');
         this.postService.get(id).subscribe(data => {

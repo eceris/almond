@@ -1,3 +1,5 @@
 <div class="write">
-    <textarea [(ngModel)]="post?.content"></textarea>
+    <textarea
+        [ngModel]="post?.content"
+        (ngModelChange)="writing($event)"></textarea>
 </div>
