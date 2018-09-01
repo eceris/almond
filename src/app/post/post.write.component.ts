@@ -12,7 +12,7 @@ import { Post } from './post';
 })
 export class PostWriteComponent implements OnInit, OnDestroy {
 
-    private post: Post;
+    post: Post;
     private subscription: Subscription;
 
     constructor(

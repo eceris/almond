@@ -13,7 +13,7 @@ import { Post } from './post';
 })
 export class PostViewComponent implements OnInit, OnDestroy {
 
-    private post: Post;
+    post: Post;
     private subscription: Subscription;
 
     constructor(

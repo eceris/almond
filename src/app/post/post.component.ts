@@ -11,7 +11,7 @@ import { Post } from './post';
 })
 export class PostComponent implements OnInit {
 
-    private posts: Array<Post>;
+    posts: Array<Post>;
 
     constructor(
         private postService: PostService,
