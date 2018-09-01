@@ -21,7 +21,6 @@ export class PostWriteComponent implements OnInit, OnDestroy {
     ) {
         this.subscription = this.postService.postEventObservable.subscribe(astronaut => {
             if(astronaut['key'] === 'save') {
-                console.log(this.post);
                 this.postService.save(this.post).subscribe(data => {
                     astronaut['value'].apply();
                 });
