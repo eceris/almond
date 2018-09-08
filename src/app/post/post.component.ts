@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PostService } from './post.service';
 import { Post } from './post';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-post',
@@ -16,7 +17,8 @@ export class PostComponent implements OnInit {
     constructor(
         private postService: PostService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private cookieService: CookieService
     ) { }
 
     ngOnInit() {
@@ -104,6 +106,15 @@ export class PostComponent implements OnInit {
     isActive(id): boolean {
         let currentPostId = this.getCurrentPostId();
         if(currentPostId && currentPostId === id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    isEditable(): boolean {
+        let cookie = this.cookieService.get('KEY_AUTH_COOKIE');
+        if(cookie) {
             return true;
         } else {
             return false;

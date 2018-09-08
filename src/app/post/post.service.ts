@@ -21,7 +21,7 @@ export class PostService {
     }
 
     create() {
-        return this.http.post<Post>('/api/posts', {});
+        return this.http.post<Post>('/api/posts', { title: "제목 없음" });
     }
 
     save(updatePost: Post) {

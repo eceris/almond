@@ -1,19 +1,19 @@
 <div class="left">
     <div class="list">
-        <ul>
+        <ul *ngIf="isEditable()">
             <li class="new" (click)="createPost()">
                 새 메모 작성하기
             </li>
         </ul>
         <ul *ngFor="let post of posts">
-            <li (click)="viewPost(post.id)" [ngClass]="{active: isActive(post.id)}">
-                {{post.title}}
+            <li (click)="viewPost(post?.id)" [ngClass]="{active: isActive(post?.id)}">
+                {{post?.title}}
             </li>
         </ul>
     </div>
 </div>
 <div class="right">
-    <div class="toolbox">
+    <div *ngIf="isEditable()" class="toolbox">
         <div *ngIf="isViewing()" class="button" (click)="editPost()">편집</div>
         <div *ngIf="isWriting()" class="button" (click)="savePost()">저장</div>
         <div *ngIf="isViewing()" class="button" (click)="deletePost()">삭제</div>

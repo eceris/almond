@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // TODO Http Interceptor
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,7 @@ import { PostComponent } from './post/post.component';
         AppRoutingModule,
         HttpClientModule
     ],
-    providers: [],
+    providers: [CookieService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
