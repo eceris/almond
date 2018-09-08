@@ -25,6 +25,7 @@ export class PostService {
     }
 
     save(updatePost: Post) {
+        updatePost.title = this.getTitleOfContent(updatePost.content);
         return this.http.put<Post>('/api/posts', updatePost);
     }
 
@@ -34,6 +35,15 @@ export class PostService {
 
     announce(event: any) {
         this.postEventSource.next(event);
+    }
+
+    getTitleOfContent(content: string) {
+        let contentFirstLine = content.split('\n')[0];
+        if(contentFirstLine) {
+            return contentFirstLine.replace(/\#/g,'');
+        } else {
+            return '제목 없음';
+        }
     }
 
 }

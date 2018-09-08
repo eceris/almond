@@ -58,6 +58,7 @@ export class PostServiceMock {
         let find;
         this.posts.forEach(p => {
             if(p.id === post.id) {
+                p.title = this.getTitleOfContent(p.content);
                 find = p;
                 return;
             }
@@ -72,6 +73,15 @@ export class PostServiceMock {
 
     announce(event: string) {
         this.postEventSource.next(event);
+    }
+
+    getTitleOfContent(content: string) {
+        let contentFirstLine = content.split('\n')[0];
+        if(contentFirstLine) {
+            return contentFirstLine.replace(/\#/g,'');
+        } else {
+            return '제목 없음';
+        }
     }
 
 }
