@@ -20,11 +20,14 @@ export class HttpAuthInterceptor implements HttpInterceptor {
                 error => {
                     if(error instanceof HttpErrorResponse) {
                         if(error.status == 401) {
-                            window.location.href='http://auth.anajoa.com/api/auth/login';
+                            window.location.href='http://auth.anajoa.com/api/auth/login?returnUrl=http%3A%2F%2Fnote.anajoa.com';
+                        } else if(error.status == 403) {
+                            alert('권한 획득 후 재시도 해 주세요.')
+                            window.location.href='/';
                         }
                     }
                 }
             )
         );
-  }
+    }
 }
