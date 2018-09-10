@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // TODO Http Interceptor
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpAuthInterceptor } from './http.auth.interceptor';
 
 import { PostModule } from './post/post.module';
 import { PostComponent } from './post/post.component';
@@ -21,7 +22,10 @@ import { PostComponent } from './post/post.component';
         AppRoutingModule,
         HttpClientModule
     ],
-    providers: [CookieService],
+    providers: [
+        CookieService,
+        { provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
