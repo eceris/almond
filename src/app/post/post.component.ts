@@ -105,7 +105,7 @@ export class PostComponent implements OnInit {
 
     isActive(id): boolean {
         let currentPostId = this.getCurrentPostId();
-        if(currentPostId && currentPostId === id) {
+        if(currentPostId && Number(currentPostId) === id) {
             return true;
         } else {
             return false;

@@ -12,7 +12,7 @@ export class PostService {
     
     constructor(private http: HttpClient) { }
 
-    get(id: string) {
+    get(id) {
         return this.http.get<Post>('/api/posts/' + id);
     }
 
@@ -33,11 +33,11 @@ export class PostService {
         return this.http.delete<Post>('/api/posts/' + post.id);
     }
 
-    announce(event: any) {
+    announce(event) {
         this.postEventSource.next(event);
     }
 
-    getTitleOfContent(content: string) {
+    getTitleOfContent(content) {
         let contentFirstLine = content.split('\n')[0];
         if(contentFirstLine) {
             return contentFirstLine.replace(/\#/g,'');
